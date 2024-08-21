@@ -8,6 +8,22 @@ int main () {
     cout << "* Bem vindos ao jogo de adivinhação *" << endl;
     cout << "*************************************" << endl;
 
+    cout << "* Escolha seu nível de dificuldade * *" << endl;
+    cout << "Fácil (f), Médio (m) ou Díficil (d)" << endl;
+
+    char dificuldade;
+    cin >> dificuldade;
+
+    int numero_de_tentativas;
+
+    if(dificuldade == 'f'){
+        numero_de_tentativas = 15;
+    } else if (dificuldade = 'm'){
+        numero_de_tentativas = 10;
+    } else {
+        numero_de_tentativas = 5;
+    }
+
     const int NUMERO_SECRETO = 42; //boa prática é colocar nomes de contantes em CAPsLk
     //cout << "o número secreto é " << NUMERO_SECRETO << ". Não conte para ninguém!" << endl;
 
@@ -16,8 +32,8 @@ int main () {
 
     double pontos = 1000.0;
 
-    while(nao_acertou){
-        tentativas++;
+    for (tentativas = 1; tentativas <= numero_de_tentativas; tentativas++) {
+        //tentativas++; somento usando while
         int chute;
         cout << "Tentativa: " << tentativas << endl;
         cout << "Qual seu chute? ";
@@ -32,6 +48,7 @@ int main () {
         if( acertou ) {
             cout << "Parabéns você acertou o número secreto." << endl;
             nao_acertou = false;
+            break;
         } else if( maior ) {
             cout << "Seu chute maior que o número secreto." << endl;
         } else {
@@ -39,8 +56,13 @@ int main () {
         }
     } 
     cout << "Fim de jogo" << endl;
-    cout << "Você acertou o número secreto em " << tentativas << " tentativas." << endl;
-    cout.precision(2); //setar precisão
-    cout << fixed; //marcador para decimal
-    cout << "Sua pontuação foi de " << pontos << " pontos."<< endl;
+    if(nao_acertou){
+        cout << "Você perdeu, tente novamente!" << endl;
+    } else {
+        cout << "Você acertou o número secreto em " << tentativas << " tentativas." << endl;
+        cout.precision(2); //setar precisão
+        cout << fixed; //marcador para decimal
+        cout << "Sua pontuação foi de " << pontos << " pontos."<< endl;
+    }
+    
 }
