@@ -8,7 +8,10 @@ int main () {
     cout << "* Bem vindos ao jogo de adivinhação *" << endl;
     cout << "*************************************" << endl;
 
+    int chute;
+    cin >> chute;
+    cout << "o valor do seu chute é " << chute;
     int numero_secreto = 42;
-    cout << "o número secreto é" << numero_secreto << ". Não conte para ninguém!" << endl;
+    cout << "o número secreto é " << numero_secreto << ". Não conte para ninguém!" << endl;
 
 }
