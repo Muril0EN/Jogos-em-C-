@@ -40,5 +40,7 @@ int main () {
     } 
     cout << "Fim de jogo" << endl;
     cout << "Você acertou o número secreto em " << tentativas << " tentativas." << endl;
+    cout.precision(2); //setar precisão
+    cout << fixed; //marcador para decimal
     cout << "Sua pontuação foi de " << pontos << " pontos."<< endl;
 }
