@@ -1,8 +1,10 @@
 #include <iostream>
 #include <string> //biblioteca para uso de strings
+#include <map>//
 using namespace std;
 
 const string PALAVRA_SECRETA = "MELANCIA"; //movendo para scopo global
+map<char, bool> chutou; //dicionário em C++ map<chave, valor> nome;
 
 bool letra_existe(char chute){
     //for (int i = 0; i < PALAVRA_SECRETA.size(); i++){
@@ -15,20 +17,27 @@ bool letra_existe(char chute){
             if(chute == letra){
                 return true;
             }     
-        } return false;
+        } return false; //else não foi usado pq ele não permitiria a continuação da iteração
     } 
 
-
 int main(){
-    
-    cout << PALAVRA_SECRETA << endl;
 
     bool nao_acertou = true;
     bool nao_ganhou = true;
 
     while(nao_acertou && nao_ganhou){
+        for(char letra : PALAVRA_SECRETA){
+            if(chutou[letra]){
+                cout << letra << " ";
+            } else {
+                cout << "_ ";
+            }
+
+        }
+
         char chute;
         cin >> chute;
+        chutou[chute] = true;
 
         if (letra_existe(chute)){
             cout << "O seu chute está na palavra." << endl;
