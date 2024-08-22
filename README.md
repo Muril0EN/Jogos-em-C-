@@ -24,3 +24,4 @@ This project is a simple number guessing game developed during an introductory C
    ```bash
    git clone https://github.com/your-username/guessing-game.git
    cd guessing-game
+# jogo-da-forca-em-C-
