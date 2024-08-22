@@ -1,4 +1,6 @@
 #include<iostream> //biblioteca de entrada e saida de dados
+#include  <cstdlib> //biblioteca padrão de C onde existe a função random que será usada
+#include <ctime>//biblioteca que tem a funções de tempo
 using namespace std; // para não precisar usar essa sintaxe -> std::cout, como da primeira linha da função int main
 
 int main () {
@@ -24,8 +26,10 @@ int main () {
         numero_de_tentativas = 5;
     }
 
-    const int NUMERO_SECRETO = 42; //boa prática é colocar nomes de contantes em CAPsLk
+    srand(time(NULL));//semente que usa função que conta número de segundos desde 1970
+    const int NUMERO_SECRETO = rand() % 100; //boa prática é colocar nomes de contantes em CAPsLk
     //cout << "o número secreto é " << NUMERO_SECRETO << ". Não conte para ninguém!" << endl;
+
 
     bool nao_acertou = true;
     int tentativas = 0;
