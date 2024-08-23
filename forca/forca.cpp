@@ -90,18 +90,24 @@ vector<string> le_arquivo(){
     //input + file + stream
     ifstream arquivo;//dados para usar ler valores de arquivo
     arquivo.open("palavras.txt");
+    
+    if(arquivo.is_open()){
+        int quantidade_palavras;
+        arquivo >> quantidade_palavras;
 
-    int quantidade_palavras;
-    arquivo >> quantidade_palavras;
+        vector<string> palavras_do_arquivo;
 
-    vector<string> palavras_do_arquivo;
-
-    for(int i = 0; i < quantidade_palavras; i++){
-        string palavra_lida;
-        arquivo >> palavra_lida;
-        palavras_do_arquivo.push_back(palavra_lida);
+        for(int i = 0; i < quantidade_palavras; i++){
+            string palavra_lida;
+            arquivo >> palavra_lida;
+            palavras_do_arquivo.push_back(palavra_lida);
+        }
+        arquivo.close();//boa prática
+        return palavras_do_arquivo;
+    } else{ // boa prática 
+        cout << "Não foi possível acessar o banco de palavras." <<endl;
+        exit(0); //parar execução
     }
-    return palavras_do_arquivo;
 }
 
 void sorteia_palavra(){
@@ -112,6 +118,35 @@ void sorteia_palavra(){
 
     palavra_secreta = palavras[indice_sorteado];
 }
+
+void salva_arquivo(vector<string> nova_lista){
+    ofstream arquivo; //output file ...
+    arquivo.open("palavras.txt");
+
+    if(arquivo.is_open()){
+        arquivo << nova_lista.size() << endl;
+
+        for(string palavra : nova_lista){
+            arquivo << palavra << endl;
+        }
+        arquivo.close();
+    } else{
+        cout << "Não foi possível acessar o banco de palavras." <<endl;
+        exit(0); //parar execução
+    }
+}
+
+void adiciona_palavra(){
+    cout << "Digite a nova palavra: " << endl;
+    string nova_palavra;
+    cin >> nova_palavra;
+
+    vector<string> lista_palavras = le_arquivo();
+    lista_palavras.push_back(nova_palavra);
+
+    salva_arquivo(lista_palavras);
+    
+    }
 
 int main() {
 
@@ -135,6 +170,13 @@ int main() {
         cout << "Você perdeu! Tente novamente!!" << endl;
     } else {
         cout << "Parabéns! Vocẽ acertou a palavra secreta!!" << endl;
+
+        cout << "Deseja adicionar nova palavra ao banco? (s/n): ";
+        char resposta;
+        cin >> resposta;
+        if(resposta == 's'){
+            adiciona_palavra();
+        }
     }
 }
 

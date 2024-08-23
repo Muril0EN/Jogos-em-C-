@@ -1,6 +1,7 @@
-5
+6
 abacaxi
 banana
 uva
 pera
 laranja
+melao
