@@ -22,20 +22,28 @@ bool letra_existe(char chute){
         } return false; //else não foi usado pq ele não permitiria a continuação da iteração
     } 
 
+bool nao_acertou() {
+    for(char letra : PALAVRA_SECRETA){
+        if(!chutou[letra]){
+            return true;
+        }
+    } 
+    return false;
+}
+
+bool nao_enforcou(){
+    return chutes_errados.size() < 5;
+}
 
 
-
-int main(){
+int main() {
 
     cout << "*************************************" << endl;
     cout << "* Bem vindos ao jogo da forca *" << endl;
     cout << "*************************************" << endl;
     cout << endl;
 
-    bool nao_acertou = true;
-    bool nao_ganhou = true;
-
-    while(nao_acertou && nao_ganhou){
+    while(nao_acertou() && nao_enforcou()){
 
         cout << "Chutes errados: ";
         for(char letra: chutes_errados){
@@ -65,7 +73,16 @@ int main(){
             cout << "O seu chute não está na palavra." << endl;
             chutes_errados.push_back(chute); //fazer um append no vetor dinâmico
             cout <<  endl;
-        }    
-    } cout << endl;
+        } 
+        cout << endl;
+    }
+    
+    cout << "Fim de jogo!" << endl;
+    cout << "A palavra secreta era: " << PALAVRA_SECRETA << endl;
+    if(nao_acertou()){
+        cout << "Você perdeu! Tente novamente!!" << endl;
+    } else {
+        cout << "Parabéns! Vocẽ acertou a palavra secreta!!" << endl;
+    }
 }
 
